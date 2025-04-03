@@ -1,0 +1,102 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 19% 8%;
+    --foreground: 210 40% 98%;
+
+    --card: 240 20% 12%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 240 20% 12%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 49 97% 52%;
+    --primary-foreground: 240 19% 8%;
+
+    --secondary: 218 59% 47%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 240 15% 20%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --accent: 359 88% 63%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 240 15% 20%;
+    --input: 240 15% 20%;
+    --ring: 59 97% 52%;
+
+    --radius: 0;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-retro-black text-foreground antialiased;
+    image-rendering: pixelated;
+  }
+
+  /* Pixel border */
+  .pixel-borders {
+    @apply border-4 border-retro-lightgray relative overflow-hidden box-content;
+    box-shadow: 
+      inset 4px 4px 0 0 rgba(255, 255, 255, 0.4),
+      inset -4px -4px 0 0 rgba(0, 0, 0, 0.4);
+  }
+
+  /* Pixel button */
+  .pixel-btn {
+    @apply relative px-4 py-2 bg-retro-yellow text-retro-black font-pixel text-center 
+           cursor-pointer select-none transition-transform duration-100 
+           border-b-4 border-r-4 border-retro-brown;
+  }
+  
+  .pixel-btn:active {
+    @apply transform translate-y-1 translate-x-1 border-b-0 border-r-0;
+  }
+
+  /* Game window */
+  .game-window {
+    @apply bg-retro-darkblue p-4 rounded-none border-4 border-retro-lightgray;
+    box-shadow: 
+      inset 4px 4px 0 0 rgba(255, 255, 255, 0.2),
+      inset -4px -4px 0 0 rgba(0, 0, 0, 0.4);
+  }
+
+  /* Scanlines */
+  .scanlines {
+    @apply relative overflow-hidden;
+  }
+  
+  .scanlines::before {
+    content: "";
+    @apply absolute top-0 left-0 w-full h-full pointer-events-none z-10;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0, 0, 0, 0.05) 0.5%,
+      transparent 1%
+    );
+    animation: scanline 10s linear infinite;
+  }
+
+  @keyframes scanline {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(100%);
+    }
+  }
+}
